@@ -14,7 +14,6 @@ WITH groupings AS (
         SUM(transition_8) as transition_8,
         SUM(transition_9) as transition_9,
         SUM(transition_10) as transition_10
-        -- Add similar lines for transition_3 to transition_10
 	FROM 
 		cep_water 
 	GROUP BY 
@@ -45,7 +44,6 @@ SELECT DISTINCT
     groupings.transition_8,
     groupings.transition_9,
     groupings.transition_10
-    -- Add similar lines for transition_3 to transition_10
 FROM
     cep_water
 JOIN
@@ -55,15 +53,3 @@ ON
 
 
 SELECT * FROM "cep_grouped" LIMIT 5;
-
--- SELECT 
---     cw.cep_id,
---     SUM(cw.transition_0) as sum_transition_0,
---     SUM(cw.transition_1) as sum_transition_1,
---     SUM(cw.transition_2) as sum_transition_2,
---     -- Add similar lines for transition_3 to transition_10
---     cw.country
--- FROM 
---     (SELECT * FROM cep_water LIMIT 5) cw
--- GROUP BY 
---     cw.cep_id;
