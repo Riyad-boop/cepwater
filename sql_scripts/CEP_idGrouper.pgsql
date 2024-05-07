@@ -1,7 +1,8 @@
+-- groups by cep_id to remove the quantile field, then joins the grouped table with the original table to get the other fields
 DROP VIEW IF EXISTS "cep_grouped";
 CREATE VIEW cep_grouped AS
 WITH groupings AS (
-    SELECT 
+    SELECT
 		cep_water.cep_id,
         SUM(transition_0) as transition_0,
         SUM(transition_1) as transition_1,
@@ -51,5 +52,6 @@ JOIN
 ON
     cep_water.cep_id = groupings.cep_id;
 
-
-SELECT * FROM "cep_grouped" LIMIT 5;
+SELECT * FROM "cep_grouped"
+ORDER BY cep_id
+LIMIT 20;

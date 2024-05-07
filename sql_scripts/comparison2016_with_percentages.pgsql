@@ -85,12 +85,12 @@ inland_water_groupings AS(
     SELECT
         protected_groupings.country_name,
         --calculate as percentages of land cover
-        SUM(protected_groupings.total_inland_water_km2 + unprotected_groupings.total_inland_water_km2) / countries_with_areas.rep_area_km2 AS "% of country's land area that is IW",
-        SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015) / countries_with_areas.rep_area_km2 AS "% of country's land area that is IPW",
-        SUM(protected_groupings.seasonal_2015 + unprotected_groupings.seasonal_2015) / countries_with_areas.rep_area_km2 AS "% of country's land area that is ISW",
-        protected_groupings.permanent_2015 / SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015) AS "% of IPW that is protected",
-        protected_groupings.seasonal_2015 / SUM(protected_groupings.seasonal_2015 + unprotected_groupings.seasonal_2015) AS "% of ISW that is protected",
-        SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015) / SUM(protected_groupings.total_inland_water_km2 + unprotected_groupings.total_inland_water_km2) AS "% of IW that is protected"
+        (SUM(protected_groupings.total_inland_water_km2 + unprotected_groupings.total_inland_water_km2) / countries_with_areas.rep_area_km2) * 100 AS "% of country's land area that is IW",
+        (SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015) / countries_with_areas.rep_area_km2) * 100 AS "% of country's land area that is IPW",
+        (SUM(protected_groupings.seasonal_2015 + unprotected_groupings.seasonal_2015) / countries_with_areas.rep_area_km2) * 100 AS "% of country's land area that is ISW",
+        (protected_groupings.permanent_2015 / SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015)) * 100 AS "% of IPW that is protected",
+        (protected_groupings.seasonal_2015 / SUM(protected_groupings.seasonal_2015 + unprotected_groupings.seasonal_2015))* 100  AS "% of ISW that is protected",
+        (SUM(protected_groupings.permanent_2015 + unprotected_groupings.permanent_2015) / SUM(protected_groupings.total_inland_water_km2 + unprotected_groupings.total_inland_water_km2)) * 100 AS "% of IW that is protected"
 
         -- protected_groupings.seasonal_2015 AS protected_seasonal_2015,
         -- protected_groupings.permanent_2015 AS protected_permanent_2015,
